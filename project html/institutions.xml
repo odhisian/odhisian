@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    institutions.xml
+    List of Kenyan institutions and their Safaricom Paybill numbers.
+    NOTE: The paybill values below are placeholders. Verify and replace with official, up-to-date numbers.
+-->
+<institutions>
+    <institution id="1">
+        <name>University of Nairobi</name>
+        <paybill>300059</paybill>
+    </institution>
+
+    <institution id="2">
+        <name>Kenyatta University</name>
+        <paybill></paybill>
+    </institution>
+
+    <institution id="3">
+        <name>Strathmore University</name>
+        <paybill></paybill>
+    </institution>
+
+    <institution id="4">
+        <name>Jomo Kenyatta University of Agriculture and Technology (JKUAT)</name>
+        <paybill></paybill>
+    </institution>
+
+    <institution id="5">
+        <name>Kenyatta National Hospital</name>
+        <paybill></paybill>
+    </institution>
+
+    <institution id="6">
+        <name>Nairobi County</name>
+        <paybill></paybill>
+    </institution>
+
+    <institution id="7">
+        <name>Ministry of Health (national)</name>
+        <paybill></paybill>
+    </institution>
+
+    <institution id="8">
+        <name>Kenya Revenue Authority (KRA)</name>
+        <paybill></paybill>
+    </institution>
+
+    <institution id="9">
+        <name>National Transport and Safety Authority (NTSA)</name>
+        <paybill></paybill>
+    </institution>
+
+    <institution id="10">
+        <name>Kenya Red Cross Society</name>
+        <paybill></paybill>
+    </institution>
+    <institution id="11">
+        <name>Mount kenya University</name>
+        <paybill>4075677</paybill>
+    </institution>
+    <institution id="12">
+        <name>USIU africa</name>
+        <paybill>516900</paybill>
+    </institution>
+    <institution id="13">
+        <name>AFRICA NAZARENE UNIVERSITY</name>
+        <paybill>7291071</paybill>
+    </institution>
+    <institution id="14">
+        <name>KABARAK UNIVERSITY</name>
+        <paybill>983100</paybill>
+    </institution>
+    <institution id="15">
+        <name>MUST</name>
+        <paybill>222222</paybill>
+    </institution>
+    <institution id="16">
+        <name>MULTIMEDIA UNIVERSITY</name>
+        <paybill>300241</paybill>
+    </institution>
+    <institution id="17">
+        <name>AFRICA INTERNATIONAL UNIVERSITY</name>
+        <paybill>522123</paybill>
+    </institution>
+    <institution id="18">
+        <name>MASENO TECHNICAL UNIVERSITY </name>
+        <paybill>4070101</paybill>
+    </institution>
+    <institution id="19">
+        <name>MIREMA SCHOOL</name>
+        <paybill>123576</paybill>
+    </institution>
+    <institution id="20">
+        <name>NOVA PIONEER{KENYA}</name>
+        <paybill>818319</paybill>
+    </institution>
+</institutions>

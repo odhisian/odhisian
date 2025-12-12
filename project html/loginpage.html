@@ -1,0 +1,160 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>LOGIN PAGE</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  html{
+    background-color: #f1f1f1;
+  }
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+/* Style the header */
+.header {
+  background-color: #d8dcda;
+  padding: 20px;
+  text-align: left;
+  width: auto;
+}
+
+/* Style the top navigation bar */
+.topnav {
+  overflow: hidden;
+  background-color: #bad1a7;
+}
+
+/* Style the topnav links */
+.topnav a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+/* Change color on hover */
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+.active{
+    background-color: #04AA6D;
+}
+
+.column.middle {
+  width: 50%;
+  float: center;
+}
+
+.row::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+@media screen and (max-width: 600px) {
+  .column.side, .column.middle {
+    width: 100%;
+  }
+}
+
+.footer {
+  background-color: #f1f1f1;
+  padding: 10px;
+  text-align: center;
+}
+
+input[type=submit], button {
+  width: 100%;
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: 2px solid red;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover, button:hover {
+  background-color: #45a049;
+}
+
+input[type=text]:focus, input[type=password]:focus {
+  background-color: rgb(181, 189, 192);
+  border: 1px solid #ccc8c8;
+}
+
+input[type=text], input[type=password], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.error {
+  color: red;
+  font-size: 12px;
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>EASYPROMPTMOBILEPAY</h1>
+</div>
+
+<div class="topnav">
+  <a class="active" href="loginpage.html">HOME</a>
+  <a href="#">SETTINGS</a>
+  
+</div>
+
+<div class="column middle">
+  <h2>LOGIN</h2>
+
+  <form id="data" action="LOGIN_PAGE.php" method="post">
+    <label for="phone">Phone Number</label>
+    <input type="text" id="phone" name="phone" placeholder="Your phone number..">
+    <span class="error"><?php echo $phoneNoErr; ?></span>
+
+    <label for="psw">Password</label>
+    <input type="password" id="psw" name="password" placeholder="Your password..">
+    <span class="error"><?php echo $passWErr; ?></span>
+
+    <button type="submit">LOGIN</button>
+    <button type="button" onclick="document.location='REGISTRATION.html'">NEW USER REGISTRATION</button>
+  </form>
+
+  <script>
+  document.getElementById("data").addEventListener("submit", function(e) {
+      let phone = document.getElementById("phone").value;
+      let password = document.getElementById("psw").value;
+
+      if (!/^[0-9]{10,15}$/.test(phone)) {
+          alert("Phone number must be 10–15 digits.");
+          e.preventDefault();
+          return;
+      }
+
+      if (password.length < 4) {
+          alert("Password must be at least 4 characters.");
+          e.preventDefault();
+          return;
+      }
+  });
+  </script>
+</div>
+
+</body>
+</html>

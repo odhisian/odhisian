@@ -1,0 +1,167 @@
+<?php
+session_start();
+if (!isset($_SESSION["user_id"])) {
+    header("Location: LOGIN_page.php");
+    exit();
+}
+$phone = htmlspecialchars($_SESSION["phone"]);
+?>
+<html lang="en">
+
+<head>
+<title>landing page</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+/* Style the header */
+.header {
+  background-color: #d8dcda;
+  padding: 20px;
+  text-align: left;
+}
+
+/* Style the top navigation bar */
+.topnav {
+  overflow: hidden;
+  background-color: #bad1a7;
+}
+
+/* Style the topnav links */
+.topnav a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+/* Change color on hover */
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+.active{
+    background-color: #04AA6D;
+}
+/* Create three unequal columns that floats next to each other */
+.column {
+  float: left;
+  padding: 10px;
+}
+
+/* Left and right column */
+.column.side {
+  width: 20%;
+}
+
+/* Middle column */
+.column.middle {
+  width: 80%;
+}
+
+/* Clear floats after the columns */
+.row::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .column.side, .column.middle {
+    width: 100%;
+  }
+}
+/* Style the footer */
+.footer {
+  background-color: #f1f1f1;
+  padding: 10px;
+  text-align: center;
+}
+input[type=submit] {
+  width: 100%;
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: 2px solid red;
+  border-radius: 20px;/*this adds rounded corner effect*/
+  cursor: pointer;
+}
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+input[type=text]:focus {
+  background-color: rgb(181, 189, 192);
+  border: 1px solid #ccc8c8;
+}
+input[type=text], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+input[type=pay], input[type=Gpay], input[type=Spay] {
+  background-color: #9fb1c9;
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  border-radius: 10px;
+  text-decoration: none;
+  margin: 4px 2px;
+  cursor: pointer;}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>EASYPROMPTMOBILEPAY</h1>
+</div>
+
+<div class="topnav">
+  <a class="active" href="landingpage.html">HOME</a>
+  <a href="#">SETTINGS</a>
+
+</div>
+
+<div class="row">
+  <div class="column side">
+    
+  </div>
+  
+  <div class="column middle">
+    <h4>WELCOME</h4>
+    
+    <p>Select an action from below</p>
+    <br>
+    <input type="pay" value="BILL PAYMENT" onclick="myFunction()">
+    <br>
+    <input type="Gpay" value="GOODS PAYMENT" onclick="myFunction2()">
+    <br>
+    <input type="Spay" value="RECEIVE MONEY" onclick="myFunction3()">
+<script>
+    function myFunction(){
+        window.location.href = "PAYBILL.HTML";};
+    function myFunction2(){
+        window.location.href = "buygoods.html";};
+    function myFunction3(){
+        window.location.href = "sendmoney.html";};
+</script>
+ <h1>Welcome</h1>
+  <p>Logged in as: <?php 
+    echo .$_SESSION["phone"].$phone; ?></p>
+  <p><a href="logout.php">Logout</a></p>
+</body>
+</html>

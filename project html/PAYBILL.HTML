@@ -1,0 +1,212 @@
+<html lang="en">
+<head>
+<title>HOME PAGE</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+/* Style the header */
+.header {
+  background-color: #d8dcda;
+  padding: 20px;
+  text-align: left;
+}
+
+/* Style the top navigation bar */
+.topnav {
+  overflow: hidden;
+  background-color: #bad1a7;
+}
+
+/* Style the topnav links */
+.topnav a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+/* Change color on hover */
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+.active{
+    background-color: #04AA6D;
+}
+/* Create three unequal columns that floats next to each other */
+.column {
+  float: left;
+  padding: 10px;
+}
+
+/* Left and right column */
+.column.side {
+  width: 20%;
+}
+
+/* Middle column */
+.column.middle {
+  width: 80%;
+}
+
+/* Clear floats after the columns */
+.row::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .column.side, .column.middle {
+    width: 100%;
+  }
+}
+/* Style the footer */
+.footer {
+  background-color: #f1f1f1;
+  padding: 10px;
+  text-align: center;
+}
+input[type=submit] {
+  width: 10%;
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: 2px solid red;
+  border-radius: 20px;/*this adds rounded corner effect*/
+  cursor: pointer;
+}
+input[type=submit]:hover {
+  background-color: #45a049;
+  width:20%;
+}
+input[type=number]:focus {
+  background-color: rgb(181, 189, 192);
+  border: 1px solid #ccc8c8;
+}
+input[type=number],input[type=text], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+ select[name="institutionSelect"] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>EASYPROMPTMOBILEPAY</h1>
+</div>
+
+<div class="topnav">
+  <a class="active" href="landingpage.html">HOME</a>
+  <a href="#">SETTINGS</a>
+</div>
+
+<div class="row">
+  <div class="column side">
+    <h2></h2>
+    <p></p>
+  </div>
+  
+  <div class="column middle">
+    <h2></h2>
+    <p>Payment details</p>
+    <form action="paybill.php" method="post">
+      <label for="paybill">Input your payment details below</label>
+  <br><br>
+
+    <!-- added select to load institutions from institution.xml -->
+    <label for="institutionSelect">Select institution</label>
+    <select id="institutionSelect" name="paybillname">
+      <option value="">choose or enter paybill number manually </option>
+    </select>
+
+    <label for="paybill">Paybill</label>
+    <input type="number" id="paybill" name="paybill" placeholder="Enter your business number">
+
+    <label for="accnumber">Account number</label>
+    <input type="number" id="accnumber" name="accnumber" placeholder="Enter the account number">
+
+     <label for="cash"> amount</label>
+    <input type="number" id="cash" name="cash" placeholder="Enter the amount">
+    
+  
+    <input type="submit" value="Submit">
+  </form>
+     </div>
+  
+</div>
+
+<!-- JavaScript to fetch and parse institution.xml and populate the select -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const select = document.getElementById('institutionSelect');
+  const paybillInput = document.getElementById('paybill');
+
+  // fetch institution.xml from the same folder
+  fetch('institutions.xml')
+    .then(resp => {
+      if (!resp.ok) throw new Error('Could not load institution.xml');
+      return resp.text();
+    })
+    .then(text => {
+      const parser = new DOMParser();
+      const xml = parser.parseFromString(text, 'application/xml');
+      // Expected XML format:
+      // <institutions>
+      //   <institution>
+      //     <name>Example Ltd</name>
+      //     <paybill>123456</paybill>
+      //   </institution>
+      // </institutions>
+      const items = xml.getElementsByTagName('institution');
+      for (let i = 0; i < items.length; i++) {
+        const nameEl = items[i].getElementsByTagName('name')[0];
+        const paybillEl = items[i].getElementsByTagName('paybill')[0];
+        const name = nameEl ? nameEl.textContent.trim() : 'Unnamed';
+        const pb = paybillEl ? paybillEl.textContent.trim() : '';
+        const opt = document.createElement('option');
+        opt.value = pb;
+        opt.textContent = name + (pb ? (' — ' + pb) : '');
+        select.appendChild(opt);
+      }
+    })
+    .catch(err => {
+      console.warn('institution.xml not loaded:', err);
+    });
+
+  // when user selects an institution, populate paybill input (but allow manual edit)
+  select.addEventListener('change', () => {
+    const val = select.value;
+    if (val) paybillInput.value = val;
+  });
+});
+</script>
+
+</body>
+</html>
